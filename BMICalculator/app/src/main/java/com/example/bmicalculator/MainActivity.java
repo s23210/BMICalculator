@@ -1,43 +1,34 @@
 package com.example.bmicalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.bmicalculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        EditText height = findViewById(R.id.height);
-        EditText weight = findViewById(R.id.weight);
-        Button button = findViewById(R.id.calculate);
-        TextView result = findViewById(R.id.result);
+        setSupportActionBar(binding.toolbar);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (height.getText().toString().isEmpty() || weight.getText().toString().isEmpty()) {
-                    result.setText("Please enter your height and weight");
-                    return;
-                }
+        binding.bmiButton.setOnClickListener(
+                v -> startActivity(new Intent(MainActivity.this, BMIActivity.class))
+        );
 
-                double heightValue = Double.parseDouble(height.getText().toString()) / 100;
-                double weightValue = Double.parseDouble(weight.getText().toString());
-                double bmi = weightValue / (heightValue * heightValue);
+        binding.calorieButton.setOnClickListener(
+                v -> startActivity(new Intent(MainActivity.this, CalorieActivity.class))
+        );
 
-                result.setText(String.format("Your BMI is %.2f", bmi));
-            }
-        });
+        binding.recipeButton.setOnClickListener(
+                v -> startActivity(new Intent(MainActivity.this, RecipeActivity.class))
+        );
     }
 }
