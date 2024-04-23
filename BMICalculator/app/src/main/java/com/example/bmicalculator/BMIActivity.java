@@ -30,12 +30,19 @@ public class BMIActivity extends AppCompatActivity {
                 return;
             }
 
-            double heightValue = Double.parseDouble(height) / 100;
-            double weightValue = Double.parseDouble(weight);
-            double bmi = weightValue / (heightValue * heightValue);
+//            double heightValue = Double.parseDouble(height) / 100;
+//            double weightValue = Double.parseDouble(weight);
+//            double bmi = weightValue / (heightValue * heightValue);
+
+            double bmi = calculateBMI(Double.parseDouble(height), Double.parseDouble(weight));
 
             binding.result.setText(String.format("Your BMI is %.2f", bmi));
         });
+    }
+
+    public static double calculateBMI(double height, double weight) {
+        double heightInMeters = height / 100;
+        return weight / (heightInMeters * heightInMeters);
     }
 }
 
