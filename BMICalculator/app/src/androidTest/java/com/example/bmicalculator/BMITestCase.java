@@ -1,25 +1,17 @@
 package com.example.bmicalculator;
 
-import android.content.Intent;
-import android.widget.TextView;
-
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.runner.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-@RunWith(AndroidJUnit4.class)
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+
+import org.junit.Before;
+import org.junit.Test;
+
 public class BMITestCase {
     @Before
     public void launchActivity() {
