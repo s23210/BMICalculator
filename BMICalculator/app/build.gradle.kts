@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -28,6 +29,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -37,6 +41,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.core)
+    implementation("androidx.core:core-ktx:+")
     testImplementation(libs.junit)
     testImplementation("org.testng:testng:6.9.6")
     androidTestImplementation(libs.ext.junit)
