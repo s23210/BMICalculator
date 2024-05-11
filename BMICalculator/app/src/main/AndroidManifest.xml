@@ -24,6 +24,7 @@
         <activity android:name=".BMIActivity" />
         <activity android:name=".CalorieActivity" />
         <activity android:name=".RecipeActivity" />
+        <activity android:name=".ShoppingListActivity" />
     </application>
 
 </manifest>

@@ -1,10 +1,15 @@
 package com.example.bmicalculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bmicalculator.databinding.ActivityRecipeBinding;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -27,7 +32,13 @@ public class RecipeActivity extends AppCompatActivity {
                             "Remove pan from heat and add egg mixture",
                             "Stir until eggs are cooked",
                             "Season with salt and pepper"
-                    }
+                    },
+                    generateShoppingList(new String[]{
+                            "spaghetti",
+                            "pancetta",
+                            "eggs",
+                            "Parmesan cheese"
+                    })
             ),
             new Recipe(
                     "Chicken Stir-Fry",
@@ -49,7 +60,15 @@ public class RecipeActivity extends AppCompatActivity {
                             "Add bell pepper and onion",
                             "Stir in soy sauce, oyster sauce, sugar, salt, and pepper",
                             "Cook until vegetables are tender"
-                    }
+                    },
+                    generateShoppingList(new String[]{
+                            "chicken breast",
+                            "bell pepper",
+                            "onion",
+                            "garlic",
+                            "soy sauce",
+                            "oyster sauce"
+                    })
             ),
             new Recipe(
                     "Vegetable Curry",
@@ -70,7 +89,16 @@ public class RecipeActivity extends AppCompatActivity {
                             "Stir in bell pepper and curry powder",
                             "Add coconut milk, salt, and pepper",
                             "Simmer until vegetables are cooked"
-                    }
+                    },
+                    generateShoppingList(new String[]{
+                            "onion",
+                            "garlic",
+                            "carrot",
+                            "potato",
+                            "bell pepper",
+                            "coconut milk",
+                            "curry powder"
+                    })
             ),
             new Recipe(
                     "Banana Bread",
@@ -91,9 +119,21 @@ public class RecipeActivity extends AppCompatActivity {
                             "Mix in flour, baking powder, cinnamon, and salt",
                             "Pour batter into a greased loaf pan",
                             "Bake for 45-50 minutes until golden brown"
-                    }
+                    },
+                    generateShoppingList(new String[]{
+                            "ripe bananas",
+                            "flour",
+                            "sugar",
+                            "egg",
+                            "butter",
+                            "baking powder",
+                            "cinnamon",
+                            "salt"
+                    })
             ),
     };
+
+    private Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,13 +148,28 @@ public class RecipeActivity extends AppCompatActivity {
 
         binding.generateButton.setOnClickListener(v -> {
             int randomIndex = (int) (Math.random() * recipes.length);
-            Recipe recipe = recipes[randomIndex];
+            recipe = recipes[randomIndex];
 
             String recipeString = recipe.getName() +
-                    "\n\nIngredients:\n" + recipe.getIngredients() +
-                    "\n\nInstructions:\n" + recipe.getInstructions();
+                    "\nIngredients:\n" + recipe.getIngredients() +
+                    "\nInstructions:\n" + recipe.getInstructions();
 
             binding.recipeTextView.setText(recipeString);
         });
+
+        binding.showShoppingListButton.setOnClickListener(
+
+                v -> {
+                    Intent intent = new Intent(RecipeActivity.this, ShoppingListActivity.class);
+                    intent.putExtra("shoppingList", recipe.getShoppingList().toArray(new String[0]));
+                    startActivity(intent);
+                }
+        );
+    }
+
+    private static List<String> generateShoppingList(String[] ingredients) {
+        List<String> shoppingList = new ArrayList<>();
+        Collections.addAll(shoppingList, ingredients);
+        return shoppingList;
     }
 }
