@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.core)
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("androidx.core:core-ktx:+")
     testImplementation(libs.junit)
     testImplementation("org.testng:testng:6.9.6")
